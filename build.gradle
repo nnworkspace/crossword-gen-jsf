@@ -36,7 +36,6 @@ dependencies {
     providedCompile group: 'javax', name: 'javaee-api', version: '8.0'
     providedCompile group: 'javax.faces', name: 'javax.faces-api', version: '2.3'
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version:'4.0.1'
-    compile group: 'org.glassfish', name: 'javax.faces', version: '2.3.7'
 
     //testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.3.1'
@@ -56,7 +55,8 @@ ext {
     appName = project.name
     testServerHttpPort = 9080
     testServerHttpsPort = 9443
-    warContext = appName
+    //warContext = appName
+    warContext = 'cwgenJsf'
 }
 
 println '################## project path: ################'
@@ -70,7 +70,7 @@ println "  projectDir:   ${project.projectDir}"
 liberty {
     server {
         //name = "${appName}Server"
-        name = 'default'
+        name = 'defaultServer'
         configFile = file("src/main/liberty/config/server.xml")
         bootstrapProperties = ['default.http.port': testServerHttpPort,
                                'default.https.port': testServerHttpsPort,
