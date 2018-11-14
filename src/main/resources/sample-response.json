@@ -1,0 +1,162 @@
+{
+  "puzzle": [
+    "GEMSBOCKPG  ",
+    "EZWERGELFE  ",
+    "G   SR ALHS ",
+    "E M TANRUFT ",
+    "N I UF IGAE ",
+    "W S RF EELA ",
+    "ESCHMIERSTD ",
+    "G H LASEREY ",
+    "H EXOTERISCH",
+    "A R CORPORAL",
+    "SPATHALBDAME",
+    "T   S     S "
+  ],
+  "solutions": [
+    {
+      "word": "ANRUFT",
+      "startPosition": [
+        3,
+        5
+      ],
+      "orientation": "HORIZONTAL"
+    },
+    {
+      "word": "CORPORAL",
+      "startPosition": [
+        9,
+        4
+      ],
+      "orientation": "HORIZONTAL"
+    },
+    {
+      "word": "EXOTERISCH",
+      "startPosition": [
+        8,
+        2
+      ],
+      "orientation": "HORIZONTAL"
+    },
+    {
+      "word": "GEGENWEG",
+      "startPosition": [
+        0,
+        0
+      ],
+      "orientation": "VERTICAL"
+    },
+    {
+      "word": "GEHFALTE",
+      "startPosition": [
+        0,
+        9
+      ],
+      "orientation": "VERTICAL"
+    },
+    {
+      "word": "GEMSBOCK",
+      "startPosition": [
+        0,
+        0
+      ],
+      "orientation": "HORIZONTAL"
+    },
+    {
+      "word": "GRAFFIATO",
+      "startPosition": [
+        1,
+        5
+      ],
+      "orientation": "VERTICAL"
+    },
+    {
+      "word": "HALBDAME",
+      "startPosition": [
+        10,
+        4
+      ],
+      "orientation": "HORIZONTAL"
+    },
+    {
+      "word": "KLARIERE",
+      "startPosition": [
+        0,
+        7
+      ],
+      "orientation": "VERTICAL"
+    },
+    {
+      "word": "LASERE",
+      "startPosition": [
+        7,
+        4
+      ],
+      "orientation": "HORIZONTAL"
+    },
+    {
+      "word": "MISCHER",
+      "startPosition": [
+        3,
+        2
+      ],
+      "orientation": "VERTICAL"
+    },
+    {
+      "word": "PFLUGES",
+      "startPosition": [
+        0,
+        8
+      ],
+      "orientation": "VERTICAL"
+    },
+    {
+      "word": "SCHMIERST",
+      "startPosition": [
+        6,
+        1
+      ],
+      "orientation": "HORIZONTAL"
+    },
+    {
+      "word": "SPATHA",
+      "startPosition": [
+        10,
+        0
+      ],
+      "orientation": "HORIZONTAL"
+    },
+    {
+      "word": "STEADYCAMS",
+      "startPosition": [
+        2,
+        10
+      ],
+      "orientation": "VERTICAL"
+    },
+    {
+      "word": "STURMLOCHS",
+      "startPosition": [
+        2,
+        4
+      ],
+      "orientation": "VERTICAL"
+    },
+    {
+      "word": "WEGHAST",
+      "startPosition": [
+        5,
+        0
+      ],
+      "orientation": "VERTICAL"
+    },
+    {
+      "word": "ZWERGELFE",
+      "startPosition": [
+        1,
+        1
+      ],
+      "orientation": "HORIZONTAL"
+    }
+  ]
+}

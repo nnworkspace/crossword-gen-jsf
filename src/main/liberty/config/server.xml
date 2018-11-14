@@ -1,0 +1,23 @@
+<server description="Sample Servlet server">
+  <!-- Enable features -->
+  <featureManager>
+    <feature>jsp-2.3</feature>
+    <feature>servlet-4.0</feature>
+    <feature>jsf-2.3</feature>
+    <feature>el-3.0</feature>
+    <feature>cdi-2.0</feature>
+    <feature>localConnector-1.0</feature>
+    <feature>beanValidation-2.0</feature>
+    <feature>websocket-1.1</feature>
+  </featureManager>
+
+  <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
+    id="defaultHttpEndpoint" host="*"/>
+
+  <!-- Automatically expand WAR files and EAR files -->
+  <applicationManager autoExpand="true" />
+  <applicationMonitor updateTrigger="mbean" />
+
+  <webApplication id="crossword-gen-jsf" location="crossword-gen-jsf.war"
+    contextRoot="${app.context.root}"/>
+</server>
