@@ -72,9 +72,10 @@ liberty {
         //name = "${appName}Server"
         name = 'defaultServer'
         configFile = file("src/main/liberty/config/server.xml")
-        bootstrapProperties = ['default.http.port': testServerHttpPort,
+        looseApplication = false
+        bootstrapProperties = ['default.http.port' : testServerHttpPort,
                                'default.https.port': testServerHttpsPort,
-                               'app.context.root': warContext]
+                               'app.context.root'  : warContext]
         packageLiberty {
             archive = "$buildDir/${appName}.zip"
             include = "usr"
