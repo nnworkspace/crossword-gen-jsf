@@ -27,6 +27,14 @@ public class CrosswordGeneratorBean {
         new Board(rows, cols));
     cwGen.generate(density, shortestWordLength);
     this.puzzleAndSolutions = cwGen.getPuzzleAndSolutions();
+
+    // According to this thread:
+    // https://stackoverflow.com/questions/34449826/iteration-over-array-of-primitives-using-uirepeat
+    // primitive types does not render correctly on JSF.
+    // Must convert the data type first.
+
+    // TODO
+
     renderResult = true;
   }
 

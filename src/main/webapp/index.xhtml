@@ -65,11 +65,26 @@
     <h:panelGrid rendered="#{crosswordGeneratorBean.renderResult}">
         Result is there, congratulations!
 
-        <!-- TODO rendering of the board is not working properly -->
+        <!-- TODO enhance the rendering of the puzzle board -->
         <ui:repeat value="#{crosswordGeneratorBean.puzzleAndSolutions.puzzle}" var="row">
             <ui:repeat value="#{row}" var="cell">
-                <h:outputText value="${cell}"></h:outputText>
+                <h:outputText value="#{cell}"></h:outputText>
             </ui:repeat>
+            <br/>
+        </ui:repeat>
+
+        <br />
+        <br/>
+
+        Solution:
+
+        <br/>
+
+        <ui:repeat value="#{crosswordGeneratorBean.puzzleAndSolutions.solutions}" var="solution">
+            <h:outputText
+                    value="#{solution.word}, start position: [#{solution.startPosition[0]}, #{solution.startPosition[1]}], #{solution.orientation}">
+            </h:outputText>
+            <br/>
         </ui:repeat>
 
     </h:panelGrid>
