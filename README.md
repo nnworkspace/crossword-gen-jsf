@@ -55,3 +55,9 @@ You can find the API specification here:
 
 More about the generator:
 [https://github.com/nnworkspace/crossword-gen-java](https://github.com/nnworkspace/crossword-gen-java)
+
+
+## Special Thanks and Further Reading
+
+* [https://hantsy.gitbooks.io/java-ee-8-by-example/content/overview.html](Hansty Bai's JEE 8 By Examples)
+
