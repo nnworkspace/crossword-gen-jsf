@@ -60,4 +60,7 @@ More about the generator:
 ## Special Thanks and Further Reading
 
 * [https://hantsy.gitbooks.io/java-ee-8-by-example/content/overview.html](Hansty Bai's JEE 8 By Examples)
+* [jakarta.io: Future of the JEE world](https://jakarta.ee/)
+* The very responsive OpenLiberty support team on GitHub
+* ....
 
