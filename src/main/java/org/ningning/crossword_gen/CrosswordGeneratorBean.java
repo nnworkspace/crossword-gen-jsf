@@ -1,6 +1,7 @@
 package org.ningning.crossword_gen;
 
 import java.nio.file.Paths;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -16,6 +17,7 @@ public class CrosswordGeneratorBean {
   private float density = 0.75f;
   private boolean renderResult = false;
   private PuzzleAndSolutions puzzleAndSolutions;
+  private List<String> words;
 
   private static final String relativePath = "/resources/german.dic";
 
@@ -26,6 +28,7 @@ public class CrosswordGeneratorBean {
     CrosswordGenerator cwGen = new CrosswordGenerator(Paths.get(absoluteFilePath),
         new Board(rows, cols));
     cwGen.generate(density, shortestWordLength);
+    this.words = cwGen.getPuzzleAndSolutions().getWords();
     this.puzzleAndSolutions = cwGen.getPuzzleAndSolutions();
 
     // According to this thread:
@@ -56,6 +59,10 @@ public class CrosswordGeneratorBean {
 
   public int getShortestWordLength() {
     return shortestWordLength;
+  }
+
+  public List<String> getWords() {
+    return words;
   }
 
   public void setShortestWordLength(int shortestWordLength) {

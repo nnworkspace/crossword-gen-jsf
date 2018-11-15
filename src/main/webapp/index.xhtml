@@ -4,7 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
 
 <h:head>
     <title>Word Search Puzzle Generator</title>
@@ -62,6 +64,8 @@
 
     <hr/>
 
+    <p:spinner rendered="#{!crosswordGeneratorBean.renderResult}"></p:spinner>
+
     <h:panelGrid rendered="#{crosswordGeneratorBean.renderResult}">
         Result is there, congratulations!
 
@@ -73,11 +77,26 @@
             <br/>
         </ui:repeat>
 
+        <!--<p:dataTable value="#{crosswordGeneratorBean.puzzleAndSolutions.puzzle}" var="row" rowIndexVar="rowIdx">
+            <p:column><h:outputText value="#{rowIdx}"></h:outputText></p:column>
+            <p:columns value="#{row}" var="column">
+                <h:outputText value="#{column}"></h:outputText>
+            </p:columns>
+        </p:dataTable>
+-->
         <br />
         <br/>
 
         Solution:
 
+        <br/>
+
+        <p>Words to find:
+        <ui:repeat value="#{crosswordGeneratorBean.words}" var="word">#{word}, </ui:repeat>
+        </p>
+        <br/>
+
+        <br />
         <br/>
 
         <ui:repeat value="#{crosswordGeneratorBean.puzzleAndSolutions.solutions}" var="solution">
