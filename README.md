@@ -15,9 +15,8 @@ pre-installed on your local dev computer.
  
 ## Prerequisite
 
-* [Install Gradle on your computer](https://gradle.org/install/)
 * Git clone this repository
-
+* cd into the directory where you cloned this repo to
 
 ## Build and Run 
 
@@ -25,7 +24,7 @@ pre-installed on your local dev computer.
 
 ```
 
-gradle libertyRun
+gradlew libertyRun
 
 ```
 
@@ -35,7 +34,7 @@ Then go to: `http://localhost:9080/cwgenJsf/`
 #### Stop the server:
 ```
 
-gradle libertyStop
+gradlew libertyStop
 
 ```
 
