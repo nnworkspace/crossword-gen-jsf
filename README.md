@@ -51,8 +51,7 @@ puzzle. User should specify the following parameters:
 * shortest length of words allowed in the board
 
 You can find the API specification here:
-[https://github.com/nnworkspace/crossword-gen-api/blob/master/src/main/api/crossword-gen-api.yaml](Crossword Generator OpenAPI spec)
-
+[Crossword Generator OpenAPI spec](https://github.com/nnworkspace/crossword-gen-api/blob/master/src/main/api/crossword-gen-api.yaml)
 More about the generator:
 [https://github.com/nnworkspace/crossword-gen-java](https://github.com/nnworkspace/crossword-gen-java)
 
