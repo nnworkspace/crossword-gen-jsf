@@ -5,7 +5,7 @@ This application demonstrates the following technologies put together
 * JEE 8 
   - CDI
   - JSF
-  - TODO: add more JEE features
+  - TODO: add more JEE features ( messaging, RxJava?? ....)
 * Self-contained build/test Gradle script. Running this application does't require any JEE 8 Server 
 pre-installed on your local dev computer. 
 * TODO: dockerization of the application
@@ -59,7 +59,7 @@ More about the generator:
 
 ## Special Thanks and Further Reading
 
-* [https://hantsy.gitbooks.io/java-ee-8-by-example/content/overview.html](Hansty Bai's JEE 8 By Examples)
+* [Hansty Bai's JEE 8 By Examples](https://hantsy.gitbooks.io/java-ee-8-by-example/content/overview.html)
 * [jakarta.io: Future of the JEE world](https://jakarta.ee/)
 * The very responsive OpenLiberty support team on GitHub
 * ....
