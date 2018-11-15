@@ -78,6 +78,6 @@ public class CrosswordGeneratorTest {
 //        System.out.println(result);
 //        System.out.println(words);
 //
-//        System.out.println(cwGenerator.getPuzzleAndSolution());
+//        System.out.println(cwGenerator.getPuzzleAndSolutions());
 //    }
 }

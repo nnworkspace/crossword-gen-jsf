@@ -6,6 +6,17 @@ import org.ningning.crossword_gen.model.Board;
 
 public class Util {
 
+
+    public static String buildLengthsOfWordsString(int[] wordLengthCounts) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < wordLengthCounts.length; i++) {
+            sb.append("[").append(i).append(", ").append(wordLengthCounts[i]).append("], ");
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
+
     public static void printAWord(String word, char mode,
                                   int beginRow, int beginCol, Board board) {
         checkArgument(word.length() <= board.getLongestSide(),

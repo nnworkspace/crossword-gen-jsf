@@ -5,7 +5,74 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <f:view>
-      <h:outputLabel value="Hello, world!"/>
-   </f:view>
+
+<h:head>
+    <title>Word Search Puzzle Generator</title>
+</h:head>
+
+<h:body>
+    <h:outputStylesheet library="css" name="styles.css"/>
+
+    <h1>Welcome to the Word Search Puzzle Generator</h1>
+
+    <p>Please enter the parameters:</p>
+
+    <h:form id="crosswordGeneratorParamForm">
+        <h:messages/>
+        <h:panelGrid columns="2"
+                     columnClasses="rightAlign,leftAlign">
+            <h:outputLabel for="rows" value="Rows:"/>
+            <h:inputText id="rows"
+                         label="Rows"
+                         value="#{crosswordGeneratorBean.rows}"
+                         required="true">
+                <f:validateLongRange minimum="1" maximum="20"/>
+            </h:inputText>
+
+            <h:outputLabel for="cols" value="Columns:"/>
+            <h:inputText id="cols"
+                         label="Columns"
+                         value="#{crosswordGeneratorBean.cols}"
+                         required="true">
+                <f:validateLongRange minimum="1" maximum="20"/>
+            </h:inputText>
+
+
+            <h:outputLabel for="density" value="Density:"/>
+            <h:inputText id="density"
+                         label="Density"
+                         value="#{crosswordGeneratorBean.density}"
+                         required="true">
+                <f:validateDoubleRange minimum="0.1" maximum="1.0"/>
+            </h:inputText>
+
+            <h:outputLabel for="shortestWordLength" value="Shortest Word Length:"/>
+            <h:inputText id="shortestWordLength"
+                         label="Shortest Word Length"
+                         value="#{crosswordGeneratorBean.shortestWordLength}"
+                         required="true">
+                <f:validateLongRange minimum="1" maximum="20"/>
+            </h:inputText>
+
+            <h:panelGroup></h:panelGroup>
+            <h:commandButton action="#{crosswordGeneratorBean.generate}" value="generate a puzzle">
+            </h:commandButton>
+        </h:panelGrid>
+    </h:form>
+
+    <hr/>
+
+    <h:panelGrid rendered="#{crosswordGeneratorBean.renderResult}">
+        Result is there, congratulations!
+
+        <!-- TODO rendering of the board is not working properly -->
+        <ui:repeat value="#{crosswordGeneratorBean.puzzleAndSolutions.puzzle}" var="row">
+            <ui:repeat value="#{row}" var="cell">
+                <h:outputText value="${cell}"></h:outputText>
+            </ui:repeat>
+        </ui:repeat>
+
+    </h:panelGrid>
+
+</h:body>
 </html>

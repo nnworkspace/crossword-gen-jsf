@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class PuzzleAndSolution {
+public class PuzzleAndSolutions {
 
   private char[][] puzzle;
   private List<Solution> solutions;
 
-  public PuzzleAndSolution(char[][] puzzle,
+  public PuzzleAndSolutions(char[][] puzzle,
       List<Solution> solutions) {
     this.puzzle = puzzle;
     this.solutions = solutions;
@@ -25,7 +25,7 @@ public class PuzzleAndSolution {
 
   @Override
   public String toString() {
-    return "PuzzleAndSolution{" +
+    return "PuzzleAndSolutions{" +
         "puzzle=" + Arrays.toString(puzzle) +
         ", solutions=" + solutions +
         '}';

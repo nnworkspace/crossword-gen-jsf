@@ -7,16 +7,14 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.TreeMap;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.ningning.crossword_gen.model.Board;
 import org.ningning.crossword_gen.model.PlacementContext;
 import org.ningning.crossword_gen.model.PlacementSpec;
-import org.ningning.crossword_gen.model.PuzzleAndSolution;
+import org.ningning.crossword_gen.model.PuzzleAndSolutions;
 import org.ningning.crossword_gen.model.Solution;
 
 public class CrosswordGenerator {
@@ -24,12 +22,14 @@ public class CrosswordGenerator {
   private final static Logger LOG = Logger.getLogger(CrosswordGenerator.class.getName());
 
   private static final String DICT_PATH = "src/main/resources/german/german.dic";
+  //private static final String DICT_PATH = "german/german.dic";
+
 
   private List<String> dict;
   private List<String> usedWords = new ArrayList<>();
   private Board board;
   private List<PlacementContext> placementHistory = new ArrayList<>();
-  private PuzzleAndSolution puzzleAndSolution;
+  private PuzzleAndSolutions puzzleAndSolutions;
 
   private int[] wordLengthCounts = new int[100];
 
@@ -63,12 +63,8 @@ public class CrosswordGenerator {
 
     this.dict.stream().forEach(word -> this.wordLengthCounts[word.length()]++);
 
-    StringBuilder sb = new StringBuilder("[");
-    for (int i = 0; i < wordLengthCounts.length; i++) {
-      sb.append("[").append(i).append(", ").append(this.wordLengthCounts[i]).append("], ");
-    }
-    sb.append("]");
-    LOG.info("Lengths of words occurrences: " + sb.toString());
+    LOG.info("Lengths of words occurrences: "
+        + Util.buildLengthsOfWordsString(this.wordLengthCounts));
 
     this.pSpecGenerator = new PlacementSpecGenerator(this.board, this.wordLengthCounts);
   }
@@ -107,7 +103,7 @@ public class CrosswordGenerator {
         //resetLastPlacement();
       }
 
-      // build the puzzleAndSolution object
+      // build the puzzleAndSolutions object
       List<Solution> solutionList;
 
       solutionList = this.placementHistory.stream().map(placementContext -> {
@@ -116,7 +112,7 @@ public class CrosswordGenerator {
             plSpec.getOrientation());
       }).sorted(Comparator.comparing(Solution::getWord)).collect(Collectors.toList());
 
-      this.puzzleAndSolution = new PuzzleAndSolution(this.board.getCharGrid(), solutionList);
+      this.puzzleAndSolutions = new PuzzleAndSolutions(this.board.getCharGrid(), solutionList);
     }
   }
 
@@ -137,8 +133,8 @@ public class CrosswordGenerator {
         .collect(Collectors.toList());
   }
 
-  public PuzzleAndSolution getPuzzleAndSolution() {
-    return puzzleAndSolution;
+  public PuzzleAndSolutions getPuzzleAndSolutions() {
+    return puzzleAndSolutions;
   }
 
   private List<String> findCandidates(PlacementSpec pSpec, char[] newWord, List<String> wordsPool) {
