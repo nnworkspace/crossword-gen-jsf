@@ -1,22 +1,25 @@
 package org.ningning.crossword_gen;
 
+import java.io.Serializable;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 import org.ningning.crossword_gen.model.Board;
 import org.ningning.crossword_gen.model.PuzzleAndSolutions;
 
 @Named
-@RequestScoped
-public class CrosswordGeneratorBean {
+@SessionScoped
+public class CrosswordGeneratorBean implements Serializable {
 
   // request parameters
   private int rows = 8, cols = 8, shortestWordLength = 3;
   private float density = 0.75f;
-  private boolean renderResult = false;
+  private boolean renderResult = false, renderSolution = false, showWaitingMsg = false;
   private PuzzleAndSolutions puzzleAndSolutions;
   private List<String> words;
   private List<Integer> columns = new ArrayList<>();
@@ -24,7 +27,13 @@ public class CrosswordGeneratorBean {
   private static final String relativePath = "/resources/german.dic";
 
   public void generate() {
+    showWaitingMsg = true;
     renderResult = false;
+    renderSolution = false;
+    this.puzzleAndSolutions = null;
+    this.words = null;
+    this.columns.clear();
+
     String absoluteFilePath = FacesContext.getCurrentInstance().getExternalContext()
         .getRealPath(relativePath);
     CrosswordGenerator cwGen = new CrosswordGenerator(Paths.get(absoluteFilePath),
@@ -45,6 +54,11 @@ public class CrosswordGeneratorBean {
     // TODO
 
     renderResult = true;
+    showWaitingMsg = false;
+  }
+
+  public void showSolution() {
+    this.renderSolution = true;
   }
 
   public int getRows() {
@@ -93,5 +107,13 @@ public class CrosswordGeneratorBean {
 
   public boolean isRenderResult() {
     return renderResult;
+  }
+
+  public boolean isRenderSolution() {
+    return renderSolution;
+  }
+
+  public boolean isShowWaitingMsg() {
+    return showWaitingMsg;
   }
 }

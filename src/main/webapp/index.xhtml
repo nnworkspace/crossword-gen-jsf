@@ -57,28 +57,33 @@
             </h:inputText>
 
             <h:panelGroup></h:panelGroup>
-            <h:commandButton action="#{crosswordGeneratorBean.generate}" value="generate a puzzle">
+            <h:commandButton value="generate a puzzle" action="#{crosswordGeneratorBean.generate}">
             </h:commandButton>
         </h:panelGrid>
     </h:form>
 
     <hr/>
 
-    <ui:fragment rendered="#{crosswordGeneratorBean.renderResult}">
-        Result is there, congratulations!
+    <h:outputText rendered="#{crosswordGeneratorBean.showWaitingMsg}">
+        Generating a word search puzzle.....
+    </h:outputText>
+    <ui:fragment id="puzzleFragement" rendered="#{crosswordGeneratorBean.renderResult}">
+        Here is your puzzle, have fun!
 
         <!-- TODO enhance the rendering of the puzzle board -->
-       <!-- <ui:repeat value="#{crosswordGeneratorBean.puzzleAndSolutions.puzzle}" var="row">
-            <ui:repeat value="#{row}" var="cell">
-                <h:outputText value="#{cell}"></h:outputText>
-            </ui:repeat>
-            <br/>
-        </ui:repeat>-->
+        <!-- <ui:repeat value="#{crosswordGeneratorBean.puzzleAndSolutions.puzzle}" var="row">
+             <ui:repeat value="#{row}" var="cell">
+                 <h:outputText value="#{cell}"></h:outputText>
+             </ui:repeat>
+             <br/>
+         </ui:repeat>-->
 
         <p:dataTable value="#{crosswordGeneratorBean.puzzleAndSolutions.puzzle}" var="row"
                      rowIndexVar="rowIdx">
-            <p:column><h:outputText value="#{rowIdx}"></h:outputText></p:column>
-            <p:columns value="#{crosswordGeneratorBean.columns}" var="column" columnIndexVar="colIndex">
+            <p:column width="1"><h:outputText value="#{rowIdx}"></h:outputText></p:column>
+            <p:columns value="#{crosswordGeneratorBean.columns}" var="column"
+                       columnIndexVar="colIndex"
+                       width="1">
                 <f:facet name="header">
                     <h:outputText>#{column}</h:outputText>
                 </f:facet>
@@ -95,6 +100,14 @@
         </p>
         <br/>
 
+        <h:form>
+            <h:commandButton value="show solution"
+                             action="#{crosswordGeneratorBean.showSolution}">
+            </h:commandButton>
+        </h:form>
+    </ui:fragment>
+
+    <ui:fragment id="solutionFragement" rendered="#{crosswordGeneratorBean.renderSolution}">
         Solution:
         <br/>
         <br/>
