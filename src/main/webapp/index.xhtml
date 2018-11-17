@@ -67,7 +67,7 @@
     <h:outputText rendered="#{crosswordGeneratorBean.showWaitingMsg}">
         Generating a word search puzzle.....
     </h:outputText>
-    <ui:fragment id="puzzleFragement" rendered="#{crosswordGeneratorBean.renderResult}">
+    <ui:fragment id="puzzleFragment" rendered="#{crosswordGeneratorBean.renderResult}">
         Here is your puzzle, have fun!
 
         <!-- TODO enhance the rendering of the puzzle board -->
@@ -107,7 +107,7 @@
         </h:form>
     </ui:fragment>
 
-    <ui:fragment id="solutionFragement" rendered="#{crosswordGeneratorBean.renderSolution}">
+    <ui:fragment id="solutionFragment" rendered="#{crosswordGeneratorBean.renderSolution}">
         Solution:
         <br/>
         <br/>

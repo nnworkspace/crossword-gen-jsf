@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 import org.ningning.crossword_gen.model.Board;
 import org.ningning.crossword_gen.model.PuzzleAndSolutions;
@@ -24,18 +23,30 @@ public class CrosswordGeneratorBean implements Serializable {
   private List<String> words;
   private List<Integer> columns = new ArrayList<>();
 
+
   private static final String relativePath = "/resources/german.dic";
 
+  @PostConstruct
+  public void init() { }
+
   public void generate() {
+
+    FacesContext facesContext = FacesContext.getCurrentInstance();
+
     showWaitingMsg = true;
     renderResult = false;
     renderSolution = false;
+
+    // update two view fragments
+    // standard jsf API is not working
+    //facesContext.getPartialViewContext().getRenderIds().add("puzzleFragment");
+    //facesContext.getPartialViewContext().getRenderIds().add("solutionFragment");
+
     this.puzzleAndSolutions = null;
     this.words = null;
     this.columns.clear();
 
-    String absoluteFilePath = FacesContext.getCurrentInstance().getExternalContext()
-        .getRealPath(relativePath);
+    String absoluteFilePath = facesContext.getExternalContext().getRealPath(relativePath);
     CrosswordGenerator cwGen = new CrosswordGenerator(Paths.get(absoluteFilePath),
         new Board(rows, cols));
     cwGen.generate(density, shortestWordLength);
