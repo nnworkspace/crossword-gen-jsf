@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      >
+>
 
 <h:head>
     <title>Word Search Puzzle Generator</title>
@@ -64,39 +64,39 @@
 
     <hr/>
 
-    <p:spinner rendered="#{!crosswordGeneratorBean.renderResult}"></p:spinner>
-
-    <h:panelGrid rendered="#{crosswordGeneratorBean.renderResult}">
+    <ui:fragment rendered="#{crosswordGeneratorBean.renderResult}">
         Result is there, congratulations!
 
         <!-- TODO enhance the rendering of the puzzle board -->
-        <ui:repeat value="#{crosswordGeneratorBean.puzzleAndSolutions.puzzle}" var="row">
+       <!-- <ui:repeat value="#{crosswordGeneratorBean.puzzleAndSolutions.puzzle}" var="row">
             <ui:repeat value="#{row}" var="cell">
                 <h:outputText value="#{cell}"></h:outputText>
             </ui:repeat>
             <br/>
-        </ui:repeat>
+        </ui:repeat>-->
 
-        <!--<p:dataTable value="#{crosswordGeneratorBean.puzzleAndSolutions.puzzle}" var="row" rowIndexVar="rowIdx">
+        <p:dataTable value="#{crosswordGeneratorBean.puzzleAndSolutions.puzzle}" var="row"
+                     rowIndexVar="rowIdx">
             <p:column><h:outputText value="#{rowIdx}"></h:outputText></p:column>
-            <p:columns value="#{row}" var="column">
-                <h:outputText value="#{column}"></h:outputText>
+            <p:columns value="#{crosswordGeneratorBean.columns}" var="column" columnIndexVar="colIndex">
+                <f:facet name="header">
+                    <h:outputText>#{column}</h:outputText>
+                </f:facet>
+                <h:outputText value="#{row[colIndex]}"></h:outputText>
             </p:columns>
         </p:dataTable>
--->
-        <br />
+
         <br/>
-
-        Solution:
-
+        <br/>
         <br/>
 
         <p>Words to find:
-        <ui:repeat value="#{crosswordGeneratorBean.words}" var="word">#{word}, </ui:repeat>
+            <ui:repeat value="#{crosswordGeneratorBean.words}" var="word">#{word}, </ui:repeat>
         </p>
         <br/>
 
-        <br />
+        Solution:
+        <br/>
         <br/>
 
         <ui:repeat value="#{crosswordGeneratorBean.puzzleAndSolutions.solutions}" var="solution">
@@ -106,7 +106,7 @@
             <br/>
         </ui:repeat>
 
-    </h:panelGrid>
+    </ui:fragment>
 
 </h:body>
 </html>

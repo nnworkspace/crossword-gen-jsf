@@ -1,6 +1,7 @@
 package org.ningning.crossword_gen;
 
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -18,6 +19,7 @@ public class CrosswordGeneratorBean {
   private boolean renderResult = false;
   private PuzzleAndSolutions puzzleAndSolutions;
   private List<String> words;
+  private List<Integer> columns = new ArrayList<>();
 
   private static final String relativePath = "/resources/german.dic";
 
@@ -35,6 +37,10 @@ public class CrosswordGeneratorBean {
     // https://stackoverflow.com/questions/34449826/iteration-over-array-of-primitives-using-uirepeat
     // primitive types does not render correctly on JSF.
     // Must convert the data type first.
+
+    for (int i = 0; i < this.cols; i++) {
+      this.columns.add(i);
+    }
 
     // TODO
 
@@ -79,6 +85,10 @@ public class CrosswordGeneratorBean {
 
   public PuzzleAndSolutions getPuzzleAndSolutions() {
     return puzzleAndSolutions;
+  }
+
+  public List<Integer> getColumns() {
+    return columns;
   }
 
   public boolean isRenderResult() {
