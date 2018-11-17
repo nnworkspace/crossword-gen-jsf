@@ -57,7 +57,9 @@
             </h:inputText>
 
             <h:panelGroup></h:panelGroup>
-            <h:commandButton value="generate a puzzle" action="#{crosswordGeneratorBean.generate}">
+            <h:commandButton value="generate a puzzle"
+                             action="#{crosswordGeneratorBean.generate}"
+                             actionListener="">
             </h:commandButton>
         </h:panelGrid>
     </h:form>
@@ -71,13 +73,6 @@
         Here is your puzzle, have fun!
 
         <!-- TODO enhance the rendering of the puzzle board -->
-        <!-- <ui:repeat value="#{crosswordGeneratorBean.puzzleAndSolutions.puzzle}" var="row">
-             <ui:repeat value="#{row}" var="cell">
-                 <h:outputText value="#{cell}"></h:outputText>
-             </ui:repeat>
-             <br/>
-         </ui:repeat>-->
-
         <p:dataTable value="#{crosswordGeneratorBean.puzzleAndSolutions.puzzle}" var="row"
                      rowIndexVar="rowIdx">
             <p:column width="1"><h:outputText value="#{rowIdx}"></h:outputText></p:column>
