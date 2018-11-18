@@ -5,7 +5,7 @@ This application demonstrates the following technologies put together
 * JEE 8 
   - CDI
   - JSF
-  - TODO: add more JEE features ( messaging, RxJava?? ....)
+  - TODO: add more JEE features ( Security, Jax-RS, JPA, Messaging, RxJava?? ....)
 * Self-contained build/test Gradle script. Running this application does't require any JEE 8 Server 
 pre-installed on your local dev computer. 
 * TODO: dockerization of the application
