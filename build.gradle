@@ -44,7 +44,7 @@ dependencies {
     testCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
 
     // The server
-    libertyRuntime group: 'io.openliberty', name: 'openliberty-runtime', version: '[19.0.0.9,)'
+    libertyRuntime group: 'io.openliberty', name: 'openliberty-runtime', version: '[19.0.0.10,)'
 }
 
 
