@@ -13,6 +13,10 @@ RUN if [ ! -z $REPOSITORIES_PROPERTIES ]; then mkdir /opt/ibm/wlp/etc/ \
   && rm -rf /output/workarea /output/logs \
   && chmod -R g+rwx /opt/ibm/wlp/output/*
 
-COPY --chown=1001:0 server.xml /config/
+COPY --chown=1001:0  ./build/libs/crossword-gen-jsf.war /config/dropins/
+COPY --chown=1001:0  ./build/wlp/usr/servers/defaultServer/server.xml /config/
+COPY --chown=1001:0  ./build/wlp/usr/servers/defaultServer/bootstrap.properties /config/
+
+RUN server start defaultServer
 
 EXPOSE 9080 9443
