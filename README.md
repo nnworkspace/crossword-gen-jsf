@@ -8,7 +8,6 @@ This application demonstrates the following technologies put together
   - TODO: add more JEE features ( Security, Jax-RS, JPA, Messaging, RxJava?? ....)
 * Self-contained build/test Gradle script. Running this application does't require any JEE 8 Server 
 pre-installed on your local dev computer. 
-* TODO: dockerization of the application
 * TODO: Helm chart for deployment on a Kubernetes cluster
 * TODO: CI/CD Pipeline (Jenkins file or similar setup)
  
@@ -54,6 +53,18 @@ You can find the API specification here:
 [Crossword Generator OpenAPI spec](https://github.com/nnworkspace/crossword-gen-api/blob/master/src/main/api/crossword-gen-api.yaml)
 More about the generator:
 [https://github.com/nnworkspace/crossword-gen-java](https://github.com/nnworkspace/crossword-gen-java)
+
+
+## Docker Commands
+Build: `docker build -t nnworkspace/crossword-jsf:latest -t nnworkspace/crossword-jsf:v0.2 .`
+
+Check images: `docker image ls`
+
+Run the application from docker: `docker run -it -p 80:9080 -p 443:9443 nnworkspace/crossword-jsf:latest`
+
+Stop a running container: `docker stop <container id/name>`
+
+Start a stopped container: `docker start <container id/name>`
 
 
 ## Special Thanks and Further Reading
