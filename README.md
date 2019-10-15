@@ -56,6 +56,7 @@ More about the generator:
 
 
 ## Docker Commands
+
 Build: `docker build -t nnworkspace/crossword-jsf:latest -t nnworkspace/crossword-jsf:v0.2 .`
 
 Check images: `docker image ls`
@@ -65,6 +66,10 @@ Run the application from docker: `docker run -it -p 80:9080 -p 443:9443 nnworksp
 Stop a running container: `docker stop <container id/name>`
 
 Start a stopped container: `docker start <container id/name>`
+
+Access the application: [http://localhost:80/cwgenJsf](http://localhost:80/cwgenJsf)
+
+> **_NOTE:_**  The context root string `cwgenJsf` is in the file `build.gradle` specified. By every build, the Gradle plugin _liberty-gradle-plugin_ will generate a `bootstrap.properties` file, which has a property `app.context.root=cwgenJsf`. The generated `bootstrap.properties` can be found in the path `./build/wlp/usr/servers/defaultServer/bootstrap.properties`. 
 
 
 ## Special Thanks and Further Reading
