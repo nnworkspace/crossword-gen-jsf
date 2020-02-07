@@ -4,7 +4,7 @@ apply plugin: 'war'
 apply plugin: 'liberty'
 
 group 'org.ningning.sandbox'
-version '0.0.1-SNAPSHOT'
+version '0.0.2-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -16,9 +16,13 @@ tasks.withType(JavaCompile) {
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            name = 'Sonatype Nexus Snapshots'
+            url = 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
     }
     dependencies {
-        classpath 'net.wasdev.wlp.gradle.plugins:liberty-gradle-plugin:2.6.5'
+        classpath 'io.openliberty.tools:liberty-gradle-plugin:3.0-SNAPSHOT'
     }
 }
 
@@ -36,15 +40,15 @@ dependencies {
     providedCompile group: 'javax', name: 'javaee-api', version: '8.0.1'
     providedCompile group: 'javax.faces', name: 'javax.faces-api', version: '2.3'
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version:'4.0.1'
-    compile group: 'org.primefaces', name: 'primefaces', version: '7.0'    
+    compile group: 'org.primefaces', name: 'primefaces', version: '7.0'
     
     //testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.2'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.2'
-    testCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '[5.6.0,)'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '[5.6.0,)'
+    testCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: '[4.5.11,)'
 
     // The server
-    libertyRuntime group: 'io.openliberty', name: 'openliberty-runtime', version: '[19.0.0.10,)'
+    libertyRuntime group: 'io.openliberty', name: 'openliberty-runtime', version: '[20.0.0.1,)'
 }
 
 
@@ -71,13 +75,13 @@ liberty {
     server {
         //name = "${appName}Server"
         name = 'defaultServer'
-        configFile = file("src/main/liberty/config/server.xml")
+        serverXmlFile = file("src/main/liberty/config/server.xml")
         looseApplication = true
         bootstrapProperties = ['default.http.port' : testServerHttpPort,
                                'default.https.port': testServerHttpsPort,
                                'app.context.root'  : warContext]
         packageLiberty {
-            archive = "$buildDir/${appName}.zip"
+            //packageName = "$buildDir/${appName}.zip"
             include = "usr"
         }
     }
@@ -85,9 +89,9 @@ liberty {
 
 // copy the dictionary file from main resources to web resources
 
-war {
-    archiveName = "${baseName}.${extension}"
-}
+//war {
+//    archiveName = "${baseName}.${extension}"
+//}
 
 test {
     reports.html.destination = file("$buildDir/reports/unit")

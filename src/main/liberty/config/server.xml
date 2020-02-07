@@ -18,6 +18,6 @@
   <applicationManager autoExpand="true" />
   <applicationMonitor updateTrigger="mbean" />
 
-  <webApplication id="crossword-gen-jsf" location="crossword-gen-jsf.war"
+  <webApplication id="crossword-gen-jsf" location="crossword-gen-jsf-0.0.2-SNAPSHOT.war"
     contextRoot="${app.context.root}"/>
 </server>
