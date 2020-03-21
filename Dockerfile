@@ -1,4 +1,4 @@
-FROM websphere-liberty:kernel
+FROM openliberty/open-liberty:kernel-java13-openj9-ubi
 
 COPY --chown=1001:0  ./build/libs/crossword-gen-jsf-0.0.2-SNAPSHOT.war /config/apps/
 COPY --chown=1001:0  ./build/wlp/usr/servers/defaultServer/server.xml /config/
