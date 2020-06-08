@@ -16,7 +16,6 @@ apply plugin: 'idea'
 apply plugin: 'liberty'
 apply plugin: 'war'
 
-
 group 'org.ningning.sandbox'
 version '0.0.2-SNAPSHOT'
 
