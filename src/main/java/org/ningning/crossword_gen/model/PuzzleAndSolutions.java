@@ -2,9 +2,6 @@ package org.ningning.crossword_gen.model;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Supplier;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class PuzzleAndSolutions {
@@ -13,8 +10,7 @@ public class PuzzleAndSolutions {
   private List<Solution> solutions;
   private List<String> words;
 
-  public PuzzleAndSolutions(char[][] puzzle,
-      List<Solution> solutions) {
+  public PuzzleAndSolutions(char[][] puzzle, List<Solution> solutions) {
     int rows = puzzle.length;
     int cols = puzzle[0].length;
 
@@ -28,8 +24,8 @@ public class PuzzleAndSolutions {
 
     this.solutions = solutions;
 
-    this.words = solutions.stream().map(solution -> solution.getWord())
-        .collect(Collectors.toList());
+    this.words =
+        solutions.stream().map(solution -> solution.getWord()).collect(Collectors.toList());
   }
 
   public Character[][] getPuzzle() {
@@ -46,9 +42,11 @@ public class PuzzleAndSolutions {
 
   @Override
   public String toString() {
-    return "PuzzleAndSolutions{" +
-        "puzzle=" + Arrays.toString(puzzle) +
-        ", solutions=" + solutions +
-        '}';
+    return "PuzzleAndSolutions{"
+        + "puzzle="
+        + Arrays.toString(puzzle)
+        + ", solutions="
+        + solutions
+        + '}';
   }
 }

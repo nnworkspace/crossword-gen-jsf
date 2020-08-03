@@ -8,8 +8,7 @@ public class Solution {
   private Integer[] startPosition = new Integer[2];
   private WordOrientation orientation;
 
-  public Solution(String word, int[] startPosition,
-      WordOrientation orientation) {
+  public Solution(String word, int[] startPosition, WordOrientation orientation) {
     this.word = word;
     this.startPosition[0] = startPosition[0];
     this.startPosition[1] = startPosition[1];
@@ -30,10 +29,14 @@ public class Solution {
 
   @Override
   public String toString() {
-    return "Solution{" +
-        "word='" + word + '\'' +
-        ", startPosition=" + Arrays.toString(startPosition) +
-        ", orientation=" + orientation +
-        '}';
+    return "Solution{"
+        + "word='"
+        + word
+        + '\''
+        + ", startPosition="
+        + Arrays.toString(startPosition)
+        + ", orientation="
+        + orientation
+        + '}';
   }
 }

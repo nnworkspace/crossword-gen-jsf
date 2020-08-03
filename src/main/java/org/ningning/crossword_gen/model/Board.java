@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 public class Board {
 
-  private final static Logger LOG = Logger.getLogger(Board.class.getName());
+  private static final Logger LOG = Logger.getLogger(Board.class.getName());
 
   private int rows;
   private int cols;
@@ -105,8 +105,10 @@ public class Board {
       }
     }
 
-    LOG.info(String.format("################## word: %s, the board looks like this:\n, %s", word,
-        this.toString()));
+    LOG.info(
+        String.format(
+            "################## word: %s, the board looks like this:\n, %s",
+            word, this.toString()));
   }
 
   public void fillEmptyCellsWithRandomChars() {
@@ -125,8 +127,10 @@ public class Board {
   }
 
   public String toString() {
-    StringBuilder sb = new StringBuilder(
-        String.format("Shape of this board is %d rows X %d cols", this.rows, this.cols).toString());
+    StringBuilder sb =
+        new StringBuilder(
+            String.format("Shape of this board is %d rows X %d cols", this.rows, this.cols)
+                .toString());
     sb.append("\n");
 
     // init the board view for console output
@@ -182,5 +186,4 @@ public class Board {
 
     return boardView;
   }
-
 }

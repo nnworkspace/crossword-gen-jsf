@@ -6,14 +6,15 @@ import java.util.List;
 import java.util.Random;
 
 public enum WordOrientation {
-    HORIZONTAL, VERTICAL;
+  HORIZONTAL,
+  VERTICAL;
 
-    private static final List<WordOrientation> VALUES =
-            Collections.unmodifiableList(Arrays.asList(values()));
-    private static final int SIZE = VALUES.size();
-    private static final Random RANDOM = new Random();
+  private static final List<WordOrientation> VALUES =
+      Collections.unmodifiableList(Arrays.asList(values()));
+  private static final int SIZE = VALUES.size();
+  private static final Random RANDOM = new Random();
 
-    public static WordOrientation randomOrientation()  {
-        return VALUES.get(RANDOM.nextInt(SIZE));
-    }
+  public static WordOrientation randomOrientation() {
+    return VALUES.get(RANDOM.nextInt(SIZE));
+  }
 }

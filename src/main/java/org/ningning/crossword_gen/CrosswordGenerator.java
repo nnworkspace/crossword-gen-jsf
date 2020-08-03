@@ -19,11 +19,10 @@ import org.ningning.crossword_gen.model.Solution;
 
 public class CrosswordGenerator {
 
-  private final static Logger LOG = Logger.getLogger(CrosswordGenerator.class.getName());
+  private static final Logger LOG = Logger.getLogger(CrosswordGenerator.class.getName());
 
   private static final String DICT_PATH = "src/main/resources/german/german.dic";
-  //private static final String DICT_PATH = "german/german.dic";
-
+  // private static final String DICT_PATH = "german/german.dic";
 
   private List<String> dict;
   private List<String> usedWords = new ArrayList<>();
@@ -56,15 +55,16 @@ public class CrosswordGenerator {
 
     // 1. filter out words with space
     // 2. count occurrences of each word's length
-    this.dict = this.dict.stream()
-        .filter(word -> !word.contains(" "))
-        .map(String::toUpperCase)
-        .collect(Collectors.toList());
+    this.dict =
+        this.dict.stream()
+            .filter(word -> !word.contains(" "))
+            .map(String::toUpperCase)
+            .collect(Collectors.toList());
 
     this.dict.stream().forEach(word -> this.wordLengthCounts[word.length()]++);
 
-    LOG.info("Lengths of words occurrences: "
-        + Util.buildLengthsOfWordsString(this.wordLengthCounts));
+    LOG.info(
+        "Lengths of words occurrences: " + Util.buildLengthsOfWordsString(this.wordLengthCounts));
 
     this.pSpecGenerator = new PlacementSpecGenerator(this.board, this.wordLengthCounts);
   }
@@ -100,17 +100,24 @@ public class CrosswordGenerator {
       } else {
         // TODO
         continue;
-        //resetLastPlacement();
+        // resetLastPlacement();
       }
 
       // build the puzzleAndSolutions object
       List<Solution> solutionList;
 
-      solutionList = this.placementHistory.stream().map(placementContext -> {
-        PlacementSpec plSpec = placementContext.getPlacementSpec();
-        return new Solution(placementContext.getWord(), plSpec.getStartPosition(),
-            plSpec.getOrientation());
-      }).sorted(Comparator.comparing(Solution::getWord)).collect(Collectors.toList());
+      solutionList =
+          this.placementHistory.stream()
+              .map(
+                  placementContext -> {
+                    PlacementSpec plSpec = placementContext.getPlacementSpec();
+                    return new Solution(
+                        placementContext.getWord(),
+                        plSpec.getStartPosition(),
+                        plSpec.getOrientation());
+                  })
+              .sorted(Comparator.comparing(Solution::getWord))
+              .collect(Collectors.toList());
 
       this.puzzleAndSolutions = new PuzzleAndSolutions(this.board.getCharGrid(), solutionList);
     }
@@ -129,7 +136,9 @@ public class CrosswordGenerator {
   }
 
   public List<String> getPlacedWords() {
-    return this.placementHistory.stream().map(pContext -> pContext.getWord()).sorted()
+    return this.placementHistory.stream()
+        .map(pContext -> pContext.getWord())
+        .sorted()
         .collect(Collectors.toList());
   }
 
@@ -150,9 +159,8 @@ public class CrosswordGenerator {
 
     String regex = regexBuilder.toString();
 
-    List<String> candidates = wordsPool.stream().filter(word ->
-        word.matches(regex)
-    ).collect(Collectors.toList());
+    List<String> candidates =
+        wordsPool.stream().filter(word -> word.matches(regex)).collect(Collectors.toList());
 
     LOG.info("Candidates size: " + candidates.size());
 
@@ -214,8 +222,8 @@ public class CrosswordGenerator {
         String word = previousCandidates.get(random.nextInt(previousCandidates.size() - 1));
         previousCandidates.remove(previousContext.getWord());
         prevPrevBoard.putWord(word, lastSpec);
-        PlacementContext newContext = new PlacementContext(prevPrevBoard, word, previousCandidates,
-            lastSpec);
+        PlacementContext newContext =
+            new PlacementContext(prevPrevBoard, word, previousCandidates, lastSpec);
         this.placementHistory.remove(placementHistory.size() - 1);
         this.placementHistory.add(newContext);
         return;
@@ -230,7 +238,7 @@ public class CrosswordGenerator {
   private void loadDict(Path dictPath) {
     this.dict = new ArrayList<>();
 
-    //read file into stream, try-with-resources
+    // read file into stream, try-with-resources
     try (Stream<String> stream = Files.lines(dictPath)) {
       stream.forEach(line -> dict.add(line));
     } catch (IOException e) {
@@ -240,12 +248,13 @@ public class CrosswordGenerator {
 
   private List<String> shortenWordList() {
 
-    List<String> result = this.dict.stream()
-        .filter(word -> word.length() <= this.board.getLongestSide())
-        .collect(Collectors.toList());
+    List<String> result =
+        this.dict.stream()
+            .filter(word -> word.length() <= this.board.getLongestSide())
+            .collect(Collectors.toList());
 
-//    LOG.info(String.format("Dictionary has %d words, shortened word list has words: %d",
-//        dict.size(), result.size()));
+    //    LOG.info(String.format("Dictionary has %d words, shortened word list has words: %d",
+    //        dict.size(), result.size()));
     return result;
   }
 

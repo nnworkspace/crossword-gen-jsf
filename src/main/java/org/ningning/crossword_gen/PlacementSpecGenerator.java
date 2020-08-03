@@ -13,7 +13,7 @@ import org.ningning.crossword_gen.model.WordOrientation;
 
 public class PlacementSpecGenerator {
 
-  private final static Logger LOG = Logger.getLogger(PlacementSpecGenerator.class.getName());
+  private static final Logger LOG = Logger.getLogger(PlacementSpecGenerator.class.getName());
 
   private Board board;
   private int[] wordLengthCounts;
@@ -50,14 +50,14 @@ public class PlacementSpecGenerator {
     }
     LOG.finer("Max word length is: " + maxLength);
 
-    EnumeratedDistribution distribution = new EnumeratedDistribution<Integer>(
-        wlCounts.subList(shortestLength, maxLength));
+    EnumeratedDistribution distribution =
+        new EnumeratedDistribution<Integer>(wlCounts.subList(shortestLength, maxLength));
     int wordLength = (int) distribution.sample();
 
-//        int wordLength = shortestLength;
-//        if (maxLength > wordLength) {
-//            wordLength = random.nextInt(maxLength - shortestLength) + shortestLength;
-//        }
+    //        int wordLength = shortestLength;
+    //        if (maxLength > wordLength) {
+    //            wordLength = random.nextInt(maxLength - shortestLength) + shortestLength;
+    //        }
 
     // return the placementSpec object
     PlacementSpec result = new PlacementSpec(this.board, orientation, startPosition, wordLength);
