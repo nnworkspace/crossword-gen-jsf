@@ -150,3 +150,17 @@ spotless {
         // licenseHeader '/* (C) $YEAR */'
     }
 }
+
+task installGitHook() {
+    doLast {
+        def hookFile = new File(rootProject.rootDir, '.git/hooks/pre-commit')
+        hookFile.setExecutable true
+        hookFile.text = """#!/bin/sh
+git stash -k
+./gradlew spotlessApply
+git add -u . # only add those already being tracked
+"""
+    }
+}
+
+assemble.dependsOn 'installGitHook'
