@@ -1,3 +1,5 @@
+import org.gradle.internal.os.OperatingSystem
+
 buildscript {
     repositories {
         mavenCentral()
@@ -164,3 +166,38 @@ git add -u . # only add those already being tracked
 }
 
 assemble.dependsOn 'installGitHook'
+
+// Docs
+
+tasks.withType(Javadoc) {
+    destinationDir = new File("${projectDir}/docs/java/")
+    options {
+        noQualifiers 'java.lang', 'java.util', 'java.io'
+    }
+}
+
+task docs(type: Exec) {
+    doFirst {
+        copy {
+            println "Copying '${projectDir}/README.md' to '${projectDir}/docs/index.md'"
+            from "${projectDir}/README.md"
+            into "${projectDir}/docs"
+            rename { "index.md" }
+        }
+        copy {
+            println "Copying '${projectDir}/CHANGELOG.md' to '${projectDir}/docs/CHANGELOG.md'"
+            from "${projectDir}/CHANGELOG.md"
+            into "${projectDir}/docs"
+            rename { "CHANGELOG.md" }
+        }
+    }
+
+    if (OperatingSystem.current().isWindows()) {
+        commandLine 'cmd', '/c', 'mkdocs build'
+    } else {
+        commandLine 'mkdocs build'
+    }
+}
+
+docs.dependsOn javadoc
+docs.group = 'documentation'

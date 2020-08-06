@@ -1,0 +1,38 @@
+site_name: crossword-gen-jsf
+site_url: https://nnworkspace.github.com/crossword-gen-jsf/
+repo_name: crossword-gen-jsf
+repo_url: https://github.com/nnworkspace/crossword-gen-jsf
+site_description: "An application which generates a word search puzzle"
+site_author: nnworkspace
+remote_branch: gh-pages
+
+copyright: 'Copyright &copy; 2020 nnworkspace'
+
+markdown_extensions:
+  - smarty
+  - codehilite
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tilde
+  - tables
+
+nav:
+  - Home: index.md
+  - Architektur: architecture.md
+  - 'Javadoc ⏏': java/index.html
+  - 'Change Log': CHANGELOG.md
+
+theme:
+  name: 'material'
+  palette:
+    primary: 'blue'
+    accent: 'white'

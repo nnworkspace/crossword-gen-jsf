@@ -1,0 +1,3 @@
+# Architektur
+
+Hier könnte die Architektur der Anwendung beschrieben werden ...
