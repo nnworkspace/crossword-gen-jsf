@@ -10,13 +10,13 @@ public class PlacementContext {
   private PlacementSpec placementSpec;
   private int indexInStack = 0;
 
-  public PlacementContext(Board board, String word, List<String> candidates,
-      PlacementSpec placementSpec) {
+  public PlacementContext(
+      Board board, String word, List<String> candidates, PlacementSpec placementSpec) {
     this.board = board;
     this.word = word;
     this.candidates = candidates;
     this.placementSpec = placementSpec;
-    this.indexInStack ++;
+    this.indexInStack++;
   }
 
   public Board getBoard() {

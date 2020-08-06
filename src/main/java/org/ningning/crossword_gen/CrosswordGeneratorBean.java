@@ -23,11 +23,10 @@ public class CrosswordGeneratorBean implements Serializable {
   private List<String> words;
   private List<Integer> columns = new ArrayList<>();
 
-
   private static final String relativePath = "/resources/german.dic";
 
   @PostConstruct
-  public void init() { }
+  public void init() {}
 
   public void generate() {
 
@@ -39,16 +38,16 @@ public class CrosswordGeneratorBean implements Serializable {
 
     // update two view fragments
     // standard jsf API is not working
-    //facesContext.getPartialViewContext().getRenderIds().add("puzzleFragment");
-    //facesContext.getPartialViewContext().getRenderIds().add("solutionFragment");
+    // facesContext.getPartialViewContext().getRenderIds().add("puzzleFragment");
+    // facesContext.getPartialViewContext().getRenderIds().add("solutionFragment");
 
     this.puzzleAndSolutions = null;
     this.words = null;
     this.columns.clear();
 
     String absoluteFilePath = facesContext.getExternalContext().getRealPath(relativePath);
-    CrosswordGenerator cwGen = new CrosswordGenerator(Paths.get(absoluteFilePath),
-        new Board(rows, cols));
+    CrosswordGenerator cwGen =
+        new CrosswordGenerator(Paths.get(absoluteFilePath), new Board(rows, cols));
     cwGen.generate(density, shortestWordLength);
     this.words = cwGen.getPuzzleAndSolutions().getWords();
     this.puzzleAndSolutions = cwGen.getPuzzleAndSolutions();

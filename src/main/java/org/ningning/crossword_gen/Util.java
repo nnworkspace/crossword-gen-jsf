@@ -6,97 +6,94 @@ import org.ningning.crossword_gen.model.Board;
 
 public class Util {
 
+  public static String buildLengthsOfWordsString(int[] wordLengthCounts) {
+    StringBuilder sb = new StringBuilder("[");
+    for (int i = 0; i < wordLengthCounts.length; i++) {
+      sb.append("[").append(i).append(", ").append(wordLengthCounts[i]).append("], ");
+    }
+    sb.append("]");
+    return sb.toString();
+  }
 
-    public static String buildLengthsOfWordsString(int[] wordLengthCounts) {
-        StringBuilder sb = new StringBuilder("[");
-        for (int i = 0; i < wordLengthCounts.length; i++) {
-            sb.append("[").append(i).append(", ").append(wordLengthCounts[i]).append("], ");
-        }
-        sb.append("]");
-        return sb.toString();
+  public static void printAWord(String word, char mode, int beginRow, int beginCol, Board board) {
+    checkArgument(
+        word.length() <= board.getLongestSide(),
+        "The word's length %d exceeds longest side of the board %d",
+        word.length(),
+        board.getLongestSide());
+
+    // initialize the empty board
+    char[][] boardView = initBoardView(board);
+
+    switch (mode) {
+      case 'h':
+        setAWordInARow(word, beginRow, beginCol, boardView);
+        break;
+      case 'v':
+        setAWordInACol(word, beginRow, beginCol, boardView);
+        break;
+      default:
+        break;
     }
 
+    // print the board
+    printBoard(boardView);
+  }
 
-    public static void printAWord(String word, char mode,
-                                  int beginRow, int beginCol, Board board) {
-        checkArgument(word.length() <= board.getLongestSide(),
-                "The word's length %d exceeds longest side of the board %d",
-                word.length(), board.getLongestSide());
+  private static char[][] initBoardView(Board board) {
+    int viewRows = board.getRows() * 2 + 1;
+    int viewCols = board.getCols() * 2 + 1;
 
-        // initialize the empty board
-        char[][] boardView = initBoardView(board);
+    char[][] boardView = new char[viewRows][viewCols];
 
-        switch (mode) {
-            case 'h':
-                setAWordInARow(word, beginRow, beginCol, boardView);
-                break;
-            case 'v':
-                setAWordInACol(word, beginRow, beginCol, boardView);
-                break;
-            default:
-                break;
+    for (int row = 0; row < viewRows; row++) {
+      for (int col = 0; col < viewCols; col++) {
+        if (row % 2 == 0) {
+          // even rows, are grid lines
+          boardView[row][col] = '-';
+        } else {
+          if (col % 2 == 0) {
+            // even cols, are grid lines
+            boardView[row][col] = '|';
+          } else {
+            boardView[row][col] = ' ';
+          }
         }
-
-        // print the board
-        printBoard(boardView);
+      }
     }
 
-    private static char[][] initBoardView(Board board) {
-        int viewRows = board.getRows() * 2 + 1;
-        int viewCols = board.getCols() * 2 + 1;
+    return boardView;
+  }
 
-        char[][] boardView = new char[viewRows][viewCols];
+  private static void setAWordInARow(String word, int row, int beginCol, char[][] boardView) {
+    int rowInView = row * 2 - 1;
 
-        for (int row = 0; row < viewRows; row++) {
-            for (int col = 0; col < viewCols; col++) {
-                if (row % 2 == 0) {
-                    // even rows, are grid lines
-                    boardView[row][col] = '-';
-                } else {
-                    if (col % 2 == 0) {
-                        // even cols, are grid lines
-                        boardView[row][col] = '|';
-                    }  else {
-                        boardView[row][col] = ' ';
-                    }
-                }
-            }
-        }
+    int beginColInView = beginCol * 2 - 1;
 
-        return boardView;
+    for (int i = 0; i < word.length(); i++) {
+      int colInView = beginColInView + i * 2;
+      boardView[rowInView][colInView] = word.charAt(i);
     }
+  }
 
-    private static void setAWordInARow(
-            String word, int row, int beginCol, char[][] boardView) {
-        int rowInView = row * 2 - 1;
+  private static void setAWordInACol(String word, int beginRow, int col, char[][] boardView) {
+    int colInView = col * 2 - 1;
 
-        int beginColInView = beginCol * 2 - 1;
+    int beginRowInView = beginRow * 2 - 1;
 
-        for (int i = 0; i < word.length(); i++) {
-            int colInView = beginColInView + i * 2;
-            boardView[rowInView][colInView] = word.charAt(i);
-        }
+    for (int i = 0; i < word.length(); i++) {
+      int rowInView = beginRowInView + i * 2;
+      boardView[rowInView][colInView] = word.charAt(i);
     }
+  }
 
-    private static void setAWordInACol(
-            String word, int beginRow, int col, char[][] boardView) {
-        int colInView = col * 2 - 1;
+  private static void printBoard(char[][] boardView) {
 
-        int beginRowInView = beginRow * 2 - 1;
-
-        for (int i = 0; i < word.length(); i++) {
-            int rowInView = beginRowInView + i * 2;
-            boardView[rowInView][colInView] = word.charAt(i);
-        }
+    for (int row = 0; row < boardView.length; row++) {
+      for (int col = 0; col < boardView[row].length; col++) {
+        System.out.print(boardView[row][col]);
+      }
+      System.out.println();
     }
-
-    private static void printBoard(char[][] boardView) {
-
-        for (int row = 0; row < boardView.length; row++) {
-            for (int col = 0; col < boardView[row].length; col++) {
-                System.out.print(boardView[row][col]);
-            }
-            System.out.println();
-        }
-    }
+  }
 }

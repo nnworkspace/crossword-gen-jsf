@@ -54,7 +54,8 @@ public class EndpointIT {
       HttpEntity httpEntity = response.getEntity();
       String bodyString = EntityUtils.toString(httpEntity);
       // String response = httpGetMethod.getResponseBodyAsString(1000);
-      assertTrue(/*"Unexpected response body",*/
+      assertTrue(
+          /*"Unexpected response body",*/
           bodyString.contains("Hello! Is Gradle working for you?"));
     } finally {
       response.close();

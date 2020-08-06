@@ -1,23 +1,23 @@
-# Java EE 8 + Self-Contained Gradle Build + CI Pipeline 
+# Java EE 8 + Self-Contained Gradle Build + CI Pipeline
 
 This application demonstrates the following technologies put together
 
-* JEE 8 
+* JEE 8
   - CDI
   - JSF
   - TODO: add more JEE features ( Security, Jax-RS, JPA, Messaging, RxJava?? ....)
-* Self-contained build/test Gradle script. Running this application does't require any JEE 8 Server 
-pre-installed on your local dev computer. 
+* Self-contained build/test Gradle script. Running this application does't require any JEE 8 Server
+pre-installed on your local dev computer.
 * TODO: Helm chart for deployment on a Kubernetes cluster
 * TODO: CI/CD Pipeline (Jenkins file or similar setup)
- 
- 
+
+
 ## Prerequisite
 
 * Git clone this repository
 * cd into the directory where you cloned this repo to
 
-## Build and Run 
+## Build and Run
 
 #### Start the application:
 
@@ -69,7 +69,7 @@ Start a stopped container: `docker start <container id/name>`
 
 Access the application: [http://localhost:80/cwgenJsf](http://localhost:80/cwgenJsf)
 
-> **_NOTE:_**  The context root string `cwgenJsf` is in the file `build.gradle` specified. By every build, the Gradle plugin _liberty-gradle-plugin_ will generate a `bootstrap.properties` file, which has a property `app.context.root=cwgenJsf`. The generated `bootstrap.properties` can be found in the path `./build/wlp/usr/servers/defaultServer/bootstrap.properties`. 
+> **_NOTE:_**  The context root string `cwgenJsf` is in the file `build.gradle` specified. By every build, the Gradle plugin _liberty-gradle-plugin_ will generate a `bootstrap.properties` file, which has a property `app.context.root=cwgenJsf`. The generated `bootstrap.properties` can be found in the path `./build/wlp/usr/servers/defaultServer/bootstrap.properties`.
 
 
 ## Special Thanks and Further Reading
@@ -78,4 +78,3 @@ Access the application: [http://localhost:80/cwgenJsf](http://localhost:80/cwgen
 * [jakarta.io: Future of the JEE world](https://jakarta.ee/)
 * The very responsive OpenLiberty support team on GitHub
 * ....
-
