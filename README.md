@@ -57,6 +57,8 @@ More about the generator:
 
 ## Docker Commands
 
+Prepare: `gradlew war`
+
 Build: `docker build -t nnworkspace/crossword-jsf:latest -t nnworkspace/crossword-jsf:v0.2 .`
 
 Check images: `docker image ls`

@@ -130,6 +130,7 @@ integrationTest.dependsOn 'libertyStart'
 integrationTest.finalizedBy 'libertyStop'
 integrationTest.finalizedBy 'openTestReport'
 libertyPackage.dependsOn 'libertyStop'
+war.finalizedBy 'libertyCreate'
 
 spotless {
     ratchetFrom 'origin/master' // only format files which have changed since origin/master
