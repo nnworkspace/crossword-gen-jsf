@@ -16,6 +16,7 @@ pre-installed on your local dev computer.
 
 * Git clone this repository
 * cd into the directory where you cloned this repo to
+* [Python 3 to generate the project documentation](#documentation)
 
 ## Build and Run
 
@@ -72,6 +73,18 @@ Start a stopped container: `docker start <container id/name>`
 Access the application: [http://localhost:80/cwgenJsf](http://localhost:80/cwgenJsf)
 
 > **_NOTE:_**  The context root string `cwgenJsf` is in the file `build.gradle` specified. By every build, the Gradle plugin _liberty-gradle-plugin_ will generate a `bootstrap.properties` file, which has a property `app.context.root=cwgenJsf`. The generated `bootstrap.properties` can be found in the path `./build/wlp/usr/servers/defaultServer/bootstrap.properties`.
+
+## Documentation
+
+To generate the documentation you need Python 3 and the pip packages
+[`mkdocs`](https://www.mkdocs.org/) and [`mkdocs-material`](https://squidfunk.github.io/mkdocs-material/)
+installed as a prerequisite.
+
+```
+pip install mkdocs mkdocs-material
+```
+
+From there on you can run `gradlew docs` to generate the latest documentation in the `site` directory.
 
 
 ## Special Thanks and Further Reading

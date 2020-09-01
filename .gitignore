@@ -133,3 +133,9 @@ gradle-app.setting
 .classpath
 .project
 .vscode/settings.json
+
+# MkDocs
+/site/
+/docs/CHANGELOG.md
+/docs/index.md
+/docs/java/
